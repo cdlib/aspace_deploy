@@ -7,8 +7,8 @@
   connection: local
   gather_facts: no
   tasks:
-  - fail: msg='Need to set tenant name by adding --extra-vars "tenant_name=<new tenant name>" to ansible-playbook call'
-    when: tenant_name == None
+  - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
+    when: client_name == None
   - name: create a new aspace instance in the private vpc
     local_action:
       module: ec2
@@ -16,7 +16,7 @@
       state: present
       region: "{{ region }}"
       key_name: "{{ key_name }}"
-      image: "{{ image_hvm }}"
+      image: "{{ image }}"
       instance_type: "{{ instance_type }}"
       instance_profile_name: s3-readonly
       group_id: [ "{{ sec_grp_ingest_private_id }}" ]
@@ -24,8 +24,8 @@
       wait_timeout: 500
       vpc_subnet_id: "{{ subnet_id_private }}"
       instance_tags:
-          project: "{{ tag_project }}"
-          Name: "aspace-{{tenant_name}}"
+          project: "{{ project }}"
+          Name: "aspace-{{client_name}}"
       volumes:
       - device_name: /dev/xvda
         device_type: gp2
@@ -35,5 +35,5 @@
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
-        line: "{{ tenant_name }} ansible_ssh_host=aspace_instance.private_ip ansible_ssh_private_key_file=~/.ssh/cluster.pem"
+        line: "{{ client_name }} ansible_ssh_host=aspace_instance.private_ip ansible_ssh_private_key_file=~/.ssh/cluster.pem"
         insertafter: "[aspace_instances]"

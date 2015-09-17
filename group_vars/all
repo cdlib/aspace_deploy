@@ -1,8 +1,8 @@
 ---
 project: aspace
 region: us-east-1
-key_name: "{{ key_name }}"
+key_name: aspace-cluster
 image: ami-0d4cfd66
 instance_type: t2.micro
-group_id: sg-9879b9fd
-vpc_subnet_id: subnet-7355145b
+sec_grp_ingest_private_id: sg-9879b9fd
+subnet_id_private: subnet-7355145b
