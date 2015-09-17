@@ -1,0 +1,8 @@
+---
+project: aspace
+region: us-east-1
+key_name: "{{ key_name }}"
+image: ami-0d4cfd66
+instance_type: t2.micro
+group_id: sg-9879b9fd
+vpc_subnet_id: subnet-7355145b
