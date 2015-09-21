@@ -1,0 +1,27 @@
+---
+# tasks file for create_client_mysqldb
+- fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
+  when: client_name == None
+- fail: msg='Need to set client db pswd by adding --extra-vars "client_db_password=<dp pswd>" to ansible-playbook call'
+  when: client_db_password == None
+- name: get the db master password
+  local_action: shell cat ~/.dbpass
+  register: pswd_db_master 
+- fail: msg='No ~/.dbpass file'
+  when: pswd_db_master == None
+- debug: var=client_name
+- debug: var=client_db_password
+- debug: var=db_user
+- debug: var=pswd_db_master
+- name: create mysql database
+  mysql_db: name={{ client_name }} encoding='utf8' login_host={{ db_server }} login_password={{ pswd_db_master.stdout }} login_user={{ db_user }}
+- name: create mysql user {{ client_name }} with PASSWORD {{ client_db_password }}
+  mysql_user:
+    login_host: "{{ db_server }}"
+    login_password: "{{ pswd_db_master.stdout }}"
+    login_user: "{{ db_user }}"
+    name: "{{ client_name }}"
+    password: "{{ client_db_password }}"
+    host: "%"
+    priv: "{{ client_name }}.*:ALL"
+- debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
