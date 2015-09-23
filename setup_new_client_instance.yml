@@ -1,0 +1,45 @@
+---
+-   hosts: aspace-instances
+    gather_facts: True         
+    become: yes
+    vars:
+      awslogs_basename: aspace
+      dir_role_templates: roles/setup_new_client_software/templates
+    pre_tasks:
+    - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
+      when: client_name == None
+    - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+
+    - name: install monit
+      yum:
+        name: monit
+        state: present
+    - name: install logrotate (should already be installed)
+      yum:
+        name: logrotate
+        state: present
+    - name: set monit to run on startup
+      shell: chkconfig monit
+    - name: create client user for running software at lower level of privilege
+      user:
+        name: "{{ client_name }}"
+        state: present
+
+    roles:
+    - { role: mredar.nightly_security_update_yum, tags: security-up }
+    - { role: create_client_mysqldb, tags: create-db }
+    - { role: setup_new_client_software, tags: setup-software, become_user: "{{ client_name }}" }
+    - { role: mredar.awslogs_meta_role, tags: awslogs }
+
+    post_tasks:
+    - name: put logrotate for client aspace log in place
+      template:
+        src: logrotate.conf.j2
+        dest: /etc/logrotate.d/aspace
+    - name: reload monit
+      command: monit reload
+    - pause: minutes=1
+    - name: start aspace from monit
+      become: yes
+      shell: monit validate
+    - wait_for: port=8001 timeout=900 delay=500 search_regex=Archive

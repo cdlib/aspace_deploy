@@ -1,0 +1,13 @@
+/home/{{ client_name }}/archivesspace/logs/archivesspace.out {
+  daily
+  missingok
+  notifempty
+  size 50M
+  create 0600 {{ client_name }} {{ client_name }}
+  delaycompress
+  compress
+  rotate 4
+  postrotate
+    /etc/init.d/awslogs restart > /dev/null
+  endscript
+}
