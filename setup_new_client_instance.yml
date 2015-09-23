@@ -1,5 +1,5 @@
 ---
--   hosts: aspace-instances
+-   hosts: aspace_instances
     gather_facts: True         
     become: yes
     vars:
