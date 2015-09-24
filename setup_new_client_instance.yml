@@ -19,7 +19,7 @@
         name: logrotate
         state: present
     - name: set monit to run on startup
-      shell: chkconfig monit
+      shell: chkconfig monit on
     - name: create client user for running software at lower level of privilege
       user:
         name: "{{ client_name }}"
