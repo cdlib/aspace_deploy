@@ -6,6 +6,7 @@
   when: client_db_password == None
 - name: get the db master password
   local_action: shell cat ~/.dbpass
+  become: no
   register: pswd_db_master 
 - fail: msg='No ~/.dbpass file'
   when: pswd_db_master == None
