@@ -8,3 +8,5 @@ They are designed for Archivesspace 1.3.0 and on.
 These will be much simplified from the existing ansible playbooks, since it will be in single client per instance mode. Currently, the install uses a multi-tenant mode which is very cumbersome.
 
 The front end proxy machine & VPC networks already exist. See appstrap for details.
+
+The rds instance must have the DB Paramter Group modified to set log_bin_trust_function_creators == 1 (on).

@@ -3,17 +3,25 @@
 - include: generate_aspace_secrets.yml
 - set_fact:
     url_jdbc_aspace: "{{ url_jdbc_base }}{{ client_name }}?user={{ client_name }}&password={{ client_db_password }}{{ url_jdbc_suffix }}"
+- debug: var=url_jdbc_aspace
 - name: get archivesspace 1.3.0 zip file
   get_url: 
     url: https://github.com/archivesspace/archivesspace/releases/download/v1.3.0/archivesspace-v1.3.0.zip
     dest: ~/archivesspace-v1.3.0.zip
     sha256sum: cd2ff0b56a91b6daa3224ccf8704638baa23c71a831440a07bfb92c68bd02c92 
+- name: unzip archivesspace into client user home dir
+  unarchive:
+    dest: "/home/{{ client_name }}/"
+    src: "/home/{{ client_name }}/archivesspace-v1.3.0.zip"
+    copy: no
+- name: get and put mysql connector in place
+  get_url:
+    url: https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar
+    dest: "/home/{{ client_name }}/archivesspace/lib/"
+    sha256sum: 7ba5290be5844b5bbdae3e4bee7e6a86b62b5feeacd224b60e66530df40a307a
 - name: config client db access
-  template: src=templates/aspace/config.rb.j2 dest=~/archivesspace/clients/{{ client_name }}/archivesspace/config/config.rb
+  template: src=config.rb.j2 dest=~/archivesspace/config/config.rb
 - name: setup client database
-  shell: chdir={{ dir_aspace_root }}/archivesspace/clients/{{ client_name }}/archivesspace/ ./scripts/setup-database.sh
+  shell: chdir=~/archivesspace/ ./scripts/setup-database.sh
 - include: aspace_save_client_info.yml
-- name: create monit monitor for client
-  become: yes
-  template: src=templates/aspace/aspace.monitrc dest=/etc/monit.d/aspace.monitrc
 - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"

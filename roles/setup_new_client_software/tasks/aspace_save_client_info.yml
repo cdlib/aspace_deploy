@@ -1,8 +1,8 @@
 ---
     - name: save client information
-      lineinfile: dest=~/.client_info create=yes line="{{ client_name }},{{ ansible_hostname }},{{ start_port.stdout }},{{ start_port.stdout|int + 1}},{{ client_db_password }}"
+      lineinfile: dest=~/.client_info create=yes line="{{ client_name }},{{ ansible_hostname }},{{ client_db_password }}"
     - name: save client information, master
       delegate_to: 127.0.0.1
       become: no
-      lineinfile: dest=~/.client_info create=yes line="{{ client_name }},{{ ansible_hostname }},{{ start_port.stdout }},{{ start_port.stdout|int + 1}},{{ client_db_password }}"
+      lineinfile: dest=~/.client_info create=yes line="{{ client_name }},{{ ansible_hostname }},{{ client_db_password }}"
 

@@ -14,8 +14,21 @@
 - debug: var=client_db_password
 - debug: var=db_user
 - debug: var=pswd_db_master
+#- name: modify paramter group so we don't get "you do not have the SUPER privilege and binary logging is enabled"
+#  rds_param_group:
+#    name: aspace
+#    state: present
+#    engine: mysql5.6
+#    immediate: yes
+#    params:
+#        log_bin_trust_function_creators: "on"
 - name: create mysql database
-  mysql_db: name={{ client_name }} encoding='utf8' login_host={{ db_server }} login_password={{ pswd_db_master.stdout }} login_user={{ db_user }}
+  mysql_db:
+    name: "{{ client_name }}"
+    encoding: 'utf8'
+    login_host: "{{ db_server }}"
+    login_password: "{{ pswd_db_master.stdout }}"
+    login_user: "{{ db_user }}"
 - name: create mysql user {{ client_name }} with PASSWORD {{ client_db_password }}
   mysql_user:
     login_host: "{{ db_server }}"

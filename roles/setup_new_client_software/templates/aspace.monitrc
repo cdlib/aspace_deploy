@@ -1,8 +1,0 @@
-check process aspace with pidfile /home/{{ client_name }}/archivesspace/data/.archivesspace.pid
-  start program = "/home/{{ client_name }}/archivesspace/archivesspace.sh start" with timeout 900 seconds
-  stop program  =  "/home/{{ client_name }}/archivesspace/archivesspace.sh stop"
-  if children > 250 then restart
-  if failed host localhost port 8001 protocol http
-     then restart
-  if 6 restarts within 8 cycles then timeout
-  group aspace
