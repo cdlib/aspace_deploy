@@ -20,13 +20,18 @@
         state: present
     - name: set monit to run on startup
       shell: chkconfig monit on
+    - name: put monit conf with http access in place
+      copy:
+        src: templates/monit.conf
+        dest: /etc/monit.conf
+        mode: 0600
+        force: yes
+    - name: start monit
+      command: monit
     - name: create client user for running software at lower level of privilege
       user:
         name: "{{ client_name }}"
         state: present
-    - name: start monit
-      command: monit
-
     roles:
     - { role: mredar.nightly_security_update_yum, tags: security-up }
     - { role: create_client_mysqldb, tags: create-db , delegate_to: 127.0.0.1 }
