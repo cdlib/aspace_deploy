@@ -10,3 +10,4 @@ ucbeda ansible_ssh_host=10.0.1.82 ansible_ssh_private_key_file=~/.ssh/cluster.pe
 ucsc ansible_ssh_host=10.0.1.217 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucrcmp ansible_ssh_host=10.0.1.135 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 uclaclark ansible_ssh_host=10.0.1.120 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucsfmc ansible_ssh_host=10.0.1.221 ansible_ssh_private_key_file=~/.ssh/cluster.pem
