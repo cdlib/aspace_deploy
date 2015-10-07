@@ -10,6 +10,8 @@
     - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
       when: client_name == None
     - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+    - name: include vaulted ses auth info
+      include_vars: all_secrets.yml
     - name: install monit
       yum:
         name: monit
