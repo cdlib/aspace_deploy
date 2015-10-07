@@ -5,7 +5,7 @@ testy ansible_ssh_host=10.0.1.19 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucm ansible_ssh_host=10.0.1.61 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucsf ansible_ssh_host=10.0.1.131 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucmppdc ansible_ssh_host=10.0.1.34 ansible_ssh_private_key_file=~/.ssh/cluster.pem
-test ansible_ssh_host=10.0.1.243 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+test ansible_ssh_host=10.0.1.122 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucbeda ansible_ssh_host=10.0.1.82 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucsc ansible_ssh_host=10.0.1.217 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucrcmp ansible_ssh_host=10.0.1.135 ansible_ssh_private_key_file=~/.ssh/cluster.pem

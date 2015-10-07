@@ -47,7 +47,7 @@
         dest: /etc/logrotate.d/aspace
     - name: reload monit
       command: monit reload
-    - pause: minutes=1
+    - pause: seconds=10
     - name: start aspace from monit
-      command: monit validate
-    - wait_for: port=8081 timeout=900 delay=500 search_regex=Archive
+      command: monit start aspace
+    - wait_for: port=8081 timeout=10 delay=900 search_regex=Archive
