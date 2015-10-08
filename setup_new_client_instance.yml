@@ -42,7 +42,7 @@
 
     post_tasks:
     - name: create monit monitor for client
-      template: src=templates/aspace.monitrc dest=/etc/monit.d/aspace.monitrc
+      template: src=templates/aspace.monitrc.j2 dest=/etc/monit.d/aspace.monitrc
     - name: put logrotate for client aspace log in place
       template:
         src: templates/logrotate.conf.j2

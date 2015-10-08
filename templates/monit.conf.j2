@@ -46,8 +46,10 @@ set statefile /var/.monit.state
 ## specified using a comma separator. By default Monit uses port 25 - it is
 ## possible to override this with the PORT option.
 #
-set mailserver email-smtp.us-east-1.amazonaws.com username {{ ses_user }}
-               password {{ ses_password }}
+set mailserver email-smtp.us-east-1.amazonaws.com port 587 
+               username {{ ses_user }} password {{ ses_password }}
+               using TLSV1
+               with timeout 30 seconds
 #                backup.bar.baz port 10025,  # backup mailserver on port 10025
 #                localhost                   # fallback relay
 #
