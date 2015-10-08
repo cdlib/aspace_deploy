@@ -23,8 +23,8 @@
     - name: set monit to run on startup
       shell: chkconfig monit on
     - name: put monit conf with http access in place
-      copy:
-        src: templates/monit.conf
+      template:
+        src: templates/monit.conf.j2
         dest: /etc/monit.conf
         mode: 0600
         force: yes

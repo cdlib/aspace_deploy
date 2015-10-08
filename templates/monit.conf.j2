@@ -46,7 +46,7 @@ set statefile /var/.monit.state
 ## specified using a comma separator. By default Monit uses port 25 - it is
 ## possible to override this with the PORT option.
 #
-set mailserver email-smtp.us-east-1.amazonaws.com user {{ ses_user }}
+set mailserver email-smtp.us-east-1.amazonaws.com username {{ ses_user }}
                password {{ ses_password }}
 #                backup.bar.baz port 10025,  # backup mailserver on port 10025
 #                localhost                   # fallback relay
@@ -98,7 +98,7 @@ set mailserver email-smtp.us-east-1.amazonaws.com user {{ ses_user }}
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender, use:
 #
-set mail-format { from: monit@aspace }
+set mail-format { from: mark.redar@ucop.edu }
 #
 #
 ## You can set alert recipients whom will receive alerts if/when a 
