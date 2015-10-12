@@ -100,7 +100,9 @@ set mailserver email-smtp.us-east-1.amazonaws.com port 587
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender, use:
 #
-set mail-format { from: mark.redar@ucop.edu }
+set mail-format { from: mark.redar@ucop.edu
+                  subject: $EVENT Service $SERVICE on {{ client_name }}.aspace.cdlib.org
+}
 #
 #
 ## You can set alert recipients whom will receive alerts if/when a 

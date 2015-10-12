@@ -16,20 +16,24 @@
       yum:
         name: monit
         state: present
+      tags: monit
     - name: install logrotate (should already be installed)
       yum:
         name: logrotate
         state: present
     - name: set monit to run on startup
       shell: chkconfig monit on
+      tags: monit
     - name: put monit conf with http access in place
       template:
         src: templates/monit.conf.j2
         dest: /etc/monit.conf
         mode: 0600
         force: yes
+      tags: monit
     - name: start monit
       command: monit
+      tags: monit
     - name: create client user for running software at lower level of privilege
       user:
         name: "{{ client_name }}"
@@ -49,7 +53,9 @@
         dest: /etc/logrotate.d/aspace
     - name: reload monit
       command: monit reload
+      tags: monit
     - pause: seconds=10
     - name: start aspace from monit
       command: monit start aspace
+      tags: monit
     - wait_for: port=8081 timeout=10 delay=900 search_regex=Archive
