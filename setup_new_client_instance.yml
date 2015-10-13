@@ -12,6 +12,7 @@
     - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
     - name: include vaulted ses auth info
       include_vars: all_secrets.yml
+      tags: monit
     - name: install monit
       yum:
         name: monit
