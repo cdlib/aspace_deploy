@@ -102,6 +102,16 @@ set mailserver email-smtp.us-east-1.amazonaws.com port 587
 #
 set mail-format { from: mark.redar@ucop.edu
                   subject: $EVENT Service $SERVICE on {{ client_name }}.aspace.cdlib.org
+
+message: $EVENT Service $SERVICE
+
+Date:        $DATE
+Action:      $ACTION
+Host:        {{ client_name }}.aspace.cdlib.org -- $HOST
+Description: $DESCRIPTION
+
+Your faithful employee,
+Monit
 }
 #
 #
