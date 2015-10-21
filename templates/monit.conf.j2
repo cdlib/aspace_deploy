@@ -16,7 +16,7 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
-set daemon  120           # check services at 2-minute intervals
+set daemon  600           # check services at 5-minute intervals
 #     with start delay 240  # optional: delay the first check by 4-minutes (by 
 #                           # default Monit check immediately after Monit start)
 #
@@ -146,11 +146,11 @@ set httpd port 2812 and
 ## performed should a test fail.
 #
 check system localhost
-  if loadavg (1min) > 4 then alert
-  if loadavg (5min) > 2 then alert
-  if memory usage > 75% then alert
+  if loadavg (5min) > 4 then alert
+  if loadavg (15min) > 2 then alert
+  if memory usage > 90% then alert
   if swap usage > 25% then alert
-  if cpu usage (user) > 70% then alert
+  if cpu usage (user) > 90% then alert
   if cpu usage (system) > 30% then alert
   if cpu usage (wait) > 20% then alert
 #
