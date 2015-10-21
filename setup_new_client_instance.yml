@@ -18,6 +18,9 @@
         name: monit
         state: present
       tags: monit
+    - name: create monit monitor for client
+      template: src=templates/aspace.monitrc.j2 dest=/etc/monit.d/aspace.monitrc
+      tags: monit
     - name: install logrotate (should already be installed)
       yum:
         name: logrotate
@@ -46,8 +49,6 @@
     - { role: mredar.awslogs_meta_role, tags: awslogs }
 
     post_tasks:
-    - name: create monit monitor for client
-      template: src=templates/aspace.monitrc.j2 dest=/etc/monit.d/aspace.monitrc
     - name: put logrotate for client aspace log in place
       template:
         src: templates/logrotate.conf.j2
