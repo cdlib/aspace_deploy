@@ -4,8 +4,8 @@
     become: yes
     vars:
       awslogs_basename: aspace
-      dir_role_templates: roles/upgrade_aspace_version/templates
-      dir_dep_role_templates: roles/upgrade_aspace_version/templates
+      dir_role_templates: roles/upgrade_aspace_software/templates
+      dir_dep_role_templates: roles/upgrade_aspace_software/templates
     pre_tasks:
     - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
       when: client_name == None
@@ -45,7 +45,7 @@
     roles:
     - { role: mredar.nightly_security_update_yum, tags: security-up }
     - { role: create_client_mysqldb, tags: create-db , delegate_to: 127.0.0.1 }
-    - { role: upgrade_aspace_version, tags: setup-software, become_user: "{{ client_name }}" }
+    - { role: upgrade_aspace_software, tags: setup-software, become_user: "{{ client_name }}" }
     - { role: mredar.awslogs_meta_role, tags: awslogs }
 
     post_tasks:
