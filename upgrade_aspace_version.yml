@@ -1,0 +1,21 @@
+---
+-   hosts: aspace_instances
+    gather_facts: True         
+    become: yes
+    vars:
+    pre_tasks:
+    - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
+      when: client_name == None
+    - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+    - name: include vaulted ses auth info
+      include_vars: all_secrets.yml
+    - name: stop aspace from monit
+      command: monit stop aspace
+    - pause: seconds=10
+    roles:
+    - { role: upgrade_aspace_version, tags: setup-software, become_user: "{{ client_name }}" }
+    post_tasks:
+    - name: start aspace from monit
+      command: monit start aspace
+    - wait_for: port=8081 timeout=10 delay=900 search_regex=Archive
+
