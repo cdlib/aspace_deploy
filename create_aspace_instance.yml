@@ -26,7 +26,8 @@
 #      termination_protection: yes
       instance_tags:
           project: "{{ project }}"
-          Name: "aspace-{{client_name}}"
+          Name: "aspace-{{ aspace_version }}-{{ client_name }}"
+
       volumes:
       - device_name: /dev/xvda
         device_type: gp2
@@ -38,7 +39,7 @@
 ####  - name: gather facts
 ###    ec2_remote_facts:
 ###      key: Name
-###      value: "aspace-{{client_name}}"
+###      value: "aspace-{{ aspace_version }}-{{ client_name }}"
 ###    register: instance_facts
 ###  - debug: var=instance_facts
 ###  - name: name associated volume
@@ -51,5 +52,5 @@
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
-        line: "{{ client_name }} ansible_ssh_host={{ aspace_instance.instances.0.private_ip}} ansible_ssh_private_key_file=~/.ssh/cluster.pem"
+        line: "{{ client_name }}-{{ aspace_version }} ansible_ssh_host={{ aspace_instance.instances.0.private_ip}} ansible_ssh_private_key_file=~/.ssh/cluster.pem"
         insertafter: "[aspace_instances]"
