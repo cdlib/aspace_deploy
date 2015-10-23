@@ -20,7 +20,9 @@ foolproof method for upgrading, with easy rollbacks if needed.
 This involves creating a parallel environment with a new RDS instance and new
 Ec2 instances for the new version.
 
-
+0. Create the modified version of the Archivesspace that our AT migrated
+   instances require. Put the built zip file on the aspace front server in the
+   same directory with the setup_new_client_instance.yml.
 1. Take a db snapshot of the existing RDS server.
 2. Create a new RDS MySQL instance. NOTE: need to make ansible playbook for
    this. Parameters are as follows:
@@ -34,7 +36,6 @@ Ec2 instances for the new version.
   * DB parameter group is "aspace" (for the binary logging issue)
   * Set Backup retention to 7 days, maintenance window for early sunday morning.
   * Allow minor version upgrades with window early monday morning.
-
 3. Shutoff access to the aspace instances by running
    /home/ec2-user/bin/maintenance.sh on the aspace front machine.
 4. Dump all DBs in existing RDS instance to file:
@@ -49,6 +50,13 @@ Ec2 instances for the new version.
    `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<client_instance_name> --extra-vars="client_name=<client_name>"`
 9. Verify that the aspace app is running correctly. Monit should eventually
    report that it is running & you can check the logs on the machine. The logs
-   will be at /home/<client_name>/archivesspace/logs/archivespact.out.
+   will be at /home/&lt;client_name&gt;/archivesspace/logs/archivesspace.out.
 10. Modify the entries in the nginx.conf on the apsace front to point at the IPs
     for the new client instances.
+
+## Modifying Archivesspace Releases to work with our AT migrated instances
+There is a problem with the DB migrations for a couple of our aspace instances
+that were migrated from Archivist's Toolkit. The solution came from Mark Cooper
+and involves explicitly setting the ids for a particular migration. [See this
+google group posting](https://groups.google.com/forum/#!topic/archivesspace/olsmrF2smNg).
+Basically you need to add `:id => row[:id],` below the `self[:job].insert(:repo_id => row[:repo_id],` line in the common/db/migrations/037_generalized_job_table.rb
