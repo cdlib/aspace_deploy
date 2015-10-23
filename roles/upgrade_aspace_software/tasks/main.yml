@@ -5,11 +5,9 @@
     url_jdbc_aspace: "{{ url_jdbc_base }}{{ client_name }}?user={{ client_name }}&password={{ client_db_password }}{{ url_jdbc_suffix }}"
 - debug: var=url_jdbc_aspace
 - name: get archivesspace {{ aspace_version }} zip file
-  get_url: 
-    url: "https://github.com/archivesspace/archivesspace/releases/download/{{ aspace_version }}/archivesspace-{{ aspace_version }}.zip"
+  copy: 
+    src: "archivesspace-{{ aspace_version }}.zip"
     dest: "~/archivesspace-{{ aspace_version }}.zip"
-    sha256sum: "{{ aspace_version_sha256sum }}"
-    #sha256sum: cd2ff0b56a91b6daa3224ccf8704638baa23c71a831440a07bfb92c68bd02c92 
 - name: unzip archivesspace into client user home dir
   unarchive:
     dest: "/home/{{ client_name }}/"
