@@ -56,7 +56,10 @@ Ec2 instances for the new version.
 
 ## Modifying Archivesspace Releases to work with our AT migrated instances
 There is a problem with the DB migrations for a couple of our aspace instances
-that were migrated from Archivist's Toolkit. The solution came from Mark Cooper
-and involves explicitly setting the ids for a particular migration. [See this
-google group posting](https://groups.google.com/forum/#!topic/archivesspace/olsmrF2smNg).
+that were migrated from Archivist's Toolkit.
+The solution for the UCSF DB came from Mark Cooper and involves explicitly setting the ids for a particular migration. [See this google group posting](https://groups.google.com/forum/#!topic/archivesspace/olsmrF2smNg).
 Basically you need to add `:id => row[:id],` below the `self[:job].insert(:repo_id => row[:repo_id],` line in the common/db/migrations/037_generalized_job_table.rb
+
+For the UCMPPDC DB there is going to have to be a change to the common/db/migrations/032_split_update_archival_record_permission_by_record_type_and_related_permissions_changes.rb file, but I'm not sure how to modify.
+
+Once the changes for the current build are made, run `./scripts/build_release <version number in form vX.X.X>` to produce the zip file to place in the ansible playbook directory.
