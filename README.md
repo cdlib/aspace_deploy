@@ -10,3 +10,45 @@ These will be much simplified from the existing ansible playbooks, since it will
 The front end proxy machine & VPC networks already exist. See appstrap for details.
 
 The rds instance must have the DB Paramter Group modified to set log_bin_trust_function_creators == 1 (on).
+
+## Upgrade procedure
+
+The aspace upgrades are proving to be a bit more troublesome than I'd like,
+especially for instances that have been migrated from Archivist's Toolkit. In
+order to mitigate any problems, using the flexibility of AWS has given a
+foolproof method for upgrading, with easy rollbacks if needed.
+This involves creating a parallel environment with a new RDS instance and new
+Ec2 instances for the new version.
+
+
+1. Take a db snapshot of the existing RDS server.
+2. Create a new RDS MySQL instance. NOTE: need to make ansible playbook for
+   this. Parameters are as follows:
+  * MySQL community edition
+  * Multi-AZ Deployment & Provisioned IOPS storage
+  * Current instance size: db.t2.small (2015-10-23)
+  * Current storage: 16GB (2015-10-23)
+  * Admin user is rds_admin_aspace
+  * Create in the aspace-vpc
+  * security group is "default"
+  * DB parameter group is "aspace" (for the binary logging issue)
+  * Set Backup retention to 7 days, maintenance window for early sunday morning.
+  * Allow minor version upgrades with window early monday morning.
+
+3. Shutoff access to the aspace instances by running
+   /home/ec2-user/bin/maintenance.sh on the aspace front machine.
+4. Dump all DBs in existing RDS instance to file:
+   `mysqldump -h <current RDS endpoint> -u rds_aspace_admin --all-databases -p >
+   all-dbs.sql`
+5. Create new databases in new instance:
+   `mysql -h <new RDS endpoint> -u rds_aspace_admin -p < all-dbs.sql`
+6.  Modify the group_vars/all.yml to update the Archivesspace version and sha256sum.
+7. Create new instances for each client:
+   `ansible-playbook -i hosts create_aspace_instance.yml --extra-vars="client_name=<client_name>"`
+8. Run the setup_new_client_instance.yml for each client:
+   `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<client_instance_name> --extra-vars="client_name=<client_name>"`
+9. Verify that the aspace app is running correctly. Monit should eventually
+   report that it is running & you can check the logs on the machine. The logs
+   will be at /home/<client_name>/archivesspace/logs/archivespact.out.
+10. Modify the entries in the nginx.conf on the apsace front to point at the IPs
+    for the new client instances.
