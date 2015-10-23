@@ -13,7 +13,7 @@
       command: monit stop aspace
     - pause: seconds=10
     roles:
-    - { role: upgrade_aspace_version, tags: setup-software, become_user: "{{ client_name }}" }
+    - { role: upgrade_aspace_software, tags: setup-software, become_user: "{{ client_name }}" }
     post_tasks:
     - name: start aspace from monit
       command: monit start aspace
