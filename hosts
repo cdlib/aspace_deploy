@@ -11,3 +11,10 @@ ucsc ansible_ssh_host=10.0.1.217 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucrcmp ansible_ssh_host=10.0.1.135 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 uclaclark ansible_ssh_host=10.0.1.120 ansible_ssh_private_key_file=~/.ssh/cluster.pem
 ucsfmc ansible_ssh_host=10.0.1.221 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucsc-v1.4.0 ansible_ssh_host=10.0.1.104 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucrcmp-v1.4.0 ansible_ssh_host=10.0.1.238 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucbeda-v1.4.0 ansible_ssh_host=10.0.1.89 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+uclaclark-v1.4.0 ansible_ssh_host=10.0.1.175 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucsfmc-v1.4.0 ansible_ssh_host=10.0.1.218 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucm-v1.4.0 ansible_ssh_host=10.0.1.41 ansible_ssh_private_key_file=~/.ssh/cluster.pem
+ucmppdc-v1.4.0 ansible_ssh_host=10.0.1.67 ansible_ssh_private_key_file=~/.ssh/cluster.pem

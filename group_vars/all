@@ -6,7 +6,7 @@ image: ami-0d4cfd66
 instance_type: t2.micro
 sec_grp_ingest_private_id: sg-9879b9fd
 subnet_id_private: subnet-7355145b
-db_server: "aspace.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
+db_server: "aspace-1-4-0.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
 db_port: 3306
 db_user: 'rds_aspace_admin'
 url_jdbc_base: "jdbc:mysql://{{ db_server }}:{{ db_port }}/"
