@@ -4,7 +4,7 @@
 - set_fact:
     url_jdbc_aspace: "{{ url_jdbc_base }}{{ client_name }}?user={{ client_name }}&password={{ client_db_password }}{{ url_jdbc_suffix }}"
 - debug: var=url_jdbc_aspace
-- name: get archivesspace {{ aspace_version }} zip file
+- name: copy archivesspace {{ aspace_version }} zip file
   copy: 
     src: "archivesspace-{{ aspace_version }}.zip"
     dest: "~/archivesspace-{{ aspace_version }}.zip"
