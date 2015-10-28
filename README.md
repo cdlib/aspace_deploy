@@ -60,6 +60,33 @@ that were migrated from Archivist's Toolkit.
 The solution for the UCSF DB came from Mark Cooper and involves explicitly setting the ids for a particular migration. [See this google group posting](https://groups.google.com/forum/#!topic/archivesspace/olsmrF2smNg).
 Basically you need to add `:id => row[:id],` below the `self[:job].insert(:repo_id => row[:repo_id],` line in the common/db/migrations/037_generalized_job_table.rb
 
-For the UCMPPDC DB there is going to have to be a change to the common/db/migrations/032_split_update_archival_record_permission_by_record_type_and_related_permissions_changes.rb file, but I'm not sure how to modify.
-
 Once the changes for the current build are made, run `./scripts/build_release <version number in form vX.X.X>` to produce the zip file to place in the ansible playbook directory.
+
+For the UCMPPDC data that was imported from AT, needed to do the following to
+the sql db before migrating 1.2 -> 1.3.
+
+    select * from group_permission where permission_id>=27;
+    +-----+---------------+----------+
+    | id  | permission_id | group_id |
+    +-----+---------------+----------+
+    | 121 |            27 |        1 |
+    | 122 |            28 |        1 |
+    | 123 |            29 |        1 |
+    | 124 |            30 |        1 |
+    | 125 |            31 |        1 |
+    +-----+---------------+----------+
+    5 rows in set (0.00 sec)
+    
+    mysql> select * from group_permission where id>=121;
+    +-----+---------------+----------+
+    | id  | permission_id | group_id |
+    +-----+---------------+----------+
+    | 121 |            27 |        1 |
+    | 122 |            28 |        1 |
+    | 123 |            29 |        1 |
+    | 124 |            30 |        1 |
+    | 125 |            31 |        1 |
+    +-----+---------------+----------+
+    5 rows in set (0.01 sec)
+    
+    mysql> delete * from group_permission where id>=121;
