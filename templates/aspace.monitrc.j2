@@ -4,6 +4,7 @@ check process aspace with pidfile /home/{{ client_name }}/archivesspace/data/.ar
   if children > 250 then restart
   if memory > 90% then alert
   if failed host localhost port 8081 protocol http
-     then restart
-  if 6 restarts within 8 cycles then timeout
+      for 3 cycles
+  then restart
+  if 6 restarts within 12 cycles then timeout
   group aspace
