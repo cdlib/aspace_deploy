@@ -13,6 +13,7 @@
     dest: "/home/{{ client_name }}/"
     src: "/home/{{ client_name }}/archivesspace-{{ aspace_version }}.zip"
     copy: no
+    creates: "/home/{{ client_name }}/archivesspace/archivesspace.sh"
 - name: get and put mysql connector in place
   get_url:
     url: https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar
@@ -25,3 +26,5 @@
   shell: chdir=~/archivesspace/ ./scripts/setup-database.sh
 - include: aspace_save_client_info.yml
 - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+- name: delete indexed_state files to force re-index
+  shell: rm -f /home/{{ client_name }}/archivesspace/data/indexer_state/*
