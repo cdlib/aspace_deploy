@@ -9,6 +9,7 @@
     pre_tasks:
     - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
       when: client_name == None
+    - debug: var=url_jdbc_base
     - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
     - name: include vaulted ses auth info
       include_vars: all_secrets.yml
@@ -34,9 +35,6 @@
         dest: /etc/monit.conf
         mode: 0600
         force: yes
-      tags: monit
-    - name: start monit
-      command: monit
       tags: monit
     - name: create client user for running software at lower level of privilege
       user:
