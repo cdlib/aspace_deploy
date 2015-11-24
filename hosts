@@ -19,3 +19,4 @@ uclaclark-v1.4.0 ansible_ssh_host=10.0.1.175 ansible_ssh_private_key_file=~/.ssh
 ucsfmc-v1.4.0 ansible_ssh_host=10.0.1.218 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsfmc
 ucm-v1.4.0 ansible_ssh_host=10.0.1.41 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucm
 ucmppdc-v1.4.0 ansible_ssh_host=10.0.1.67 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucmppdc
+ucsf-v1.4.0 ansible_ssh_host=10.0.1.50 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
