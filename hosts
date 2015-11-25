@@ -21,7 +21,6 @@ ucm-v1.4.0 ansible_ssh_host=10.0.1.41 ansible_ssh_private_key_file=~/.ssh/cluste
 ucmppdc-v1.4.0 ansible_ssh_host=10.0.1.67 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucmppdc
 ucsf-v1.4.0 ansible_ssh_host=10.0.1.50 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
 test-v1.4.0 ansible_ssh_host=10.0.1.176 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
-
 test-v1.4.2 ansible_ssh_host=10.0.1.196 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
 ucbeda-v1.4.2 ansible_ssh_host=10.0.1.136 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
 uclaclark-v1.4.2 ansible_ssh_host=10.0.1.84 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclaclark

@@ -14,4 +14,4 @@ url_jdbc_suffix: '&useUnicode=true&characterEncoding=UTF-8'
 client_db_password: "{{ lookup('password', '~/.aspace/' + client_name + '.pswd' ) }}"
 #override for newer versions
 aspace_version: v1.4.2
-aspace_version_sha256sum: d605af9c84cca612ed275ea96f5259c3abdad1825b419baba1271a44933e9cd7
+aspace_version_shar256sum: fcbab63a2b7e90562a7d205c058338bb8bf299e21471b946972577709d0e1575
