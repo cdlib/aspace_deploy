@@ -1,11 +1,10 @@
 
 
 declare -a clients=("ucbeda" "uclaclark" "ucm" "ucmppdc" "ucsc" "ucsf" "ucsfmc"
-"ucrcmp" )
-PUBLIC_ERRS=()
-PRIVATE_ERRS=()
-for client in "${clients[@]}"
-do
+"ucrcmp" 
+"this_is_a_failure" )
+
+function check_public_url () {
     echo "URL: http://public.${client}.aspace.cdlib.org"
     wget -q http://public.${client}.aspace.cdlib.org > /dev/null
     last_exit=$?
@@ -15,6 +14,9 @@ do
     else
         rm index.html
     fi
+}
+
+function check_private_url () {
     echo "URL: https://${client}.aspace.cdlib.org"
     wget -q --no-check-certificate https://${client}.aspace.cdlib.org > /dev/null
     last_exit=$?
@@ -24,6 +26,14 @@ do
     else
         rm index.html
     fi
+}
+
+PUBLIC_ERRS=()
+PRIVATE_ERRS=()
+for client in "${clients[@]}"
+do
+	check_public_url client
+	check_private_url client
 done
 if [ ${#PUBLIC_ERRS[@]} -ne 0 ]; then
     echo -e "\033[31mPUBLIC ERRORS: $PUBLIC_ERRS\033[0m"
