@@ -24,7 +24,7 @@ function check_public_url () {
 	if [ $silent -ne 1 ] ; then
 		echo "URL: http://public.${client}.aspace.cdlib.org"
 	fi
-    wget -q http://public.${client}.aspace.cdlib.org > /dev/null
+    wget --timeout=10 -q http://public.${client}.aspace.cdlib.org > /dev/null
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
@@ -40,7 +40,7 @@ function check_private_url () {
 	if [ $silent -ne 1 ] ; then
 		echo "URL: https://${client}.aspace.cdlib.org"
 	fi
-    wget -q --no-check-certificate https://${client}.aspace.cdlib.org > /dev/null
+    wget --timeout=10 -q --no-check-certificate https://${client}.aspace.cdlib.org > /dev/null
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
