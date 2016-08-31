@@ -1,0 +1,16 @@
+---
+-   hosts: aspace_instances
+    gather_facts: True         
+    become: yes
+    vars:
+      awslogs_basename: aspace
+      dir_role_templates: roles/upgrade_aspace_software/templates
+      dir_dep_role_templates: roles/upgrade_aspace_software/templates
+    pre_tasks:
+    - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
+      when: client_name == None
+    - debug: var=client_name
+    tasks:
+    - name: start aspspace
+      command:  monit start aspace
+      sudo: yes
