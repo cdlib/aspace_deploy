@@ -9,6 +9,7 @@
   tasks:
   - fail: msg='Need to set client name by adding --extra-vars "client_name=<new client name>" to ansible-playbook call'
     when: client_name == None
+  - debug: var=client_name
   - name: create a new aspace instance in the private vpc
     local_action:
       module: ec2
