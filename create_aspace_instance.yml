@@ -49,7 +49,7 @@
 ###      instance: "{{ aspace_instance.instance_ids.0 }}"
 ####        project: "{{ project }}"
 ###    register: root_vol
-  - debug: var=root_vol
+###  - debug: var=root_vol
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
