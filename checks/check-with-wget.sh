@@ -17,8 +17,7 @@ while getopts hs FLAG; do
 	esac
 done
 
-declare -a clients=("ucbeda" "uclaclark" "ucm" "ucmppdc" "ucsc" "ucsf" "ucsfmc"
-"ucrcmp" )
+declare -a clients=("ucbeda" "uclaclark" "ucm" "ucmppdc" "ucsc" "ucsf" "ucrcmp" )
 
 function check_public_url () {
 	if [ $silent -ne 1 ] ; then
