@@ -28,7 +28,9 @@
       instance_tags:
           project: "{{ project }}"
           Name: "aspace-{{ aspace_version }}-{{ client_name }}"
-
+          Program: dsc
+          Environment: prd
+          Service: aspace
       volumes:
       - device_name: /dev/xvda
         device_type: gp2
