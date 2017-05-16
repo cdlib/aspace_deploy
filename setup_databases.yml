@@ -3,7 +3,6 @@
 -   hosts: aspace_instances
     gather_facts: True         
     become: yes
-    become_user: {{ client_anme }}
     vars:
       awslogs_basename: aspace
       dir_role_templates: roles/upgrade_aspace_software/templates
@@ -13,6 +12,21 @@
       when: client_name == None
     - debug: var=client_name
     tasks:
-    - name: stop aspspace
+    - name: stop aspace
       command:  monit stop aspace
-      sudo: yes
+      become: yes
+    - name: run setup_databases
+      command: /home/{{ client_name }}/archivesspace/scripts/setup-database.sh
+      args:
+        chdir: /home/{{ client_name }}/archivesspace/
+      become: yes 
+      become_user: "{{ client_name }}"
+    - name: force reindex by removing indexer_state dir
+      file: 
+        path: "/home/{{ client_name }}/archivesspace/data/indexer_state"
+        state: absent
+      become: yes 
+      become_user: "{{ client_name }}"
+    - name: start aspace
+      command:  monit start aspace
+      become: yes

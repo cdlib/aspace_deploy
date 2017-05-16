@@ -12,6 +12,6 @@
       when: client_name == None
     - debug: var=client_name
     tasks:
-    - name: start aspspace
+    - name: start aspace
       command:  monit start aspace
       sudo: yes

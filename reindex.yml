@@ -3,7 +3,7 @@
 -   hosts: aspace_instances
     gather_facts: True         
     become: yes
-    #become_user: "{{ client_name }}"
+    become_user: "{{ client_name }}"
     vars:
       awslogs_basename: aspace
       dir_role_templates: roles/upgrade_aspace_software/templates
@@ -14,5 +14,7 @@
     - debug: var=client_name
     tasks:
     - name: remove indexer state files
-      shell: rm /home/{{ client_name }}/archivesspace/data/indexer_state/*
-      sudo: yes
+      file:
+        state: absent
+        path: /home/{{ client_name }}/archivesspace/data/indexer_state/*
+    #  shell: rm /home/{{ client_name }}/archivesspace/data/indexer_state/*
