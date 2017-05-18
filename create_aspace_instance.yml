@@ -35,7 +35,7 @@
       - device_name: /dev/xvda
         device_type: gp2
         volume_size: 16
-        delete_on_termination: no
+        delete_on_termination: yes
     register: aspace_instance
   - debug: var=aspace_instance
   - debug: msg="Instance id {{ aspace_instance.instance_ids.0 }}"
