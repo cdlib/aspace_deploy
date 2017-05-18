@@ -39,19 +39,23 @@
     register: aspace_instance
   - debug: var=aspace_instance
   - debug: msg="Instance id {{ aspace_instance.instance_ids.0 }}"
-####  - name: gather facts
-###    ec2_remote_facts:
-###      key: Name
-###      value: "aspace-{{ aspace_version }}-{{ client_name }}"
-###    register: instance_facts
-###  - debug: var=instance_facts
-###  - name: name associated volume
-###    ec2_vol:
-###      region: "{{ region }}"
-###      instance: "{{ aspace_instance.instance_ids.0 }}"
-####        project: "{{ project }}"
-###    register: root_vol
-###  - debug: var=root_vol
+  - name: get associated volume
+    ec2_vol:
+      region: "{{ region }}"
+      instance: "{{ aspace_instance.instance_ids.0 }}"
+      state: list
+    register: volumes_out
+  - name: tag associated volume
+    ec2_tag:
+      resource: "{{ item.id }}"
+      region: "{{ region }}"
+      tags:
+          project: "{{ project }}"
+          Name: "aspace-{{ aspace_version }}-{{ client_name }}"
+          Program: dsc
+          Environment: prd
+          Service: aspace
+    with_items: "{{ volumes_out.volumes | default([]) }}"
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
