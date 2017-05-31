@@ -56,6 +56,16 @@
           Environment: "{{ tag_cdl_environment }}"
           Service: "{{ tag_cdl_service }}"
     with_items: "{{ volumes_out.volumes | default([]) }}"
+  - name: create version group in hosts file
+    lineinfile:
+        dest: ./hosts
+        line: "[{{ aspace_version }}]"
+        insertafter: localhost
+  - name: add host to version group in hosts file
+    lineinfile:
+        dest: ./hosts
+        line: "{{ client_name }}-{{ aspace_version }}"
+        insertafter: "[{{ aspace_version }}]"
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
