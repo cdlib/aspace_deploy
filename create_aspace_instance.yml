@@ -28,9 +28,9 @@
       instance_tags:
           project: "{{ project }}"
           Name: "aspace-{{ aspace_version }}-{{ client_name }}"
-          Program: dsc
-          Environment: prd
-          Service: aspace
+          Program: "{{ tag_cdl_program }}"
+          Environment: "{{ tag_cdl_environment }}"
+          Service: "{{ tag_cdl_service }}"
       volumes:
       - device_name: /dev/xvda
         device_type: gp2
@@ -52,9 +52,9 @@
       tags:
           project: "{{ project }}"
           Name: "aspace-{{ aspace_version }}-{{ client_name }}"
-          Program: dsc
-          Environment: prd
-          Service: aspace
+          Program: "{{ tag_cdl_program }}"
+          Environment: "{{ tag_cdl_environment }}"
+          Service: "{{ tag_cdl_service }}"
     with_items: "{{ volumes_out.volumes | default([]) }}"
   - name: save aspace instance information to hosts
     lineinfile:

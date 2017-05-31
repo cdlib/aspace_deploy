@@ -15,3 +15,7 @@ client_db_password: "{{ lookup('password', '~/.aspace/' + client_name + '.pswd' 
 db_server: "aspace-2-2-1.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
 aspace_version: v2.0.1
 #aspace_version_sha256sum: 9435bec9e70bfe55bcb5134ef339b8aa3962ade3eef540b74baf768ce1185ed2
+
+tag_cdl_program: dsc
+tag_cdl_environment: prd
+tag_cdl_service: archivesspace
