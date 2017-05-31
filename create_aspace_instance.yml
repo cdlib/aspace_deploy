@@ -65,7 +65,7 @@
     lineinfile:
         dest: ./hosts
         line: "{{ client_name }}-{{ aspace_version }}"
-        insertafter: "[{{ aspace_version }}]"
+        insertafter: "^\\[{{ aspace_version }}\\]$"
   - name: save aspace instance information to hosts
     lineinfile:
         dest: ./hosts
