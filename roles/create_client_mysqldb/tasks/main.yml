@@ -22,6 +22,11 @@
 #    immediate: yes
 #    params:
 #        log_bin_trust_function_creators: "on"
+- name: create .my.cnf (latest ansible seems to need this)
+  template:
+    src: my.cnf
+    dest: ~/.my.cnf
+  become: no
 - name: create mysql database
   mysql_db:
     name: "{{ client_name }}"
