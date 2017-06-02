@@ -15,9 +15,7 @@
       include_vars: all_secrets.yml
       tags: monit
     - name: include client specific vars
-      include_vars: 
-        file: "{{ client_name }}.yml"
-        dir: host_vars
+      include_vars:  "host_vars/{{ client_name }}.yml"
     - name: install monit
       yum:
         name: monit
