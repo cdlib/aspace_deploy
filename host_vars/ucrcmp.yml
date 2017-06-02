@@ -3,3 +3,5 @@ ASPACE_JAVA_XMX: 4096m
 records_per_thread: 25
 thread_count: 2
 indexer_timeout: 1200
+
+instance_type: t2.medium
