@@ -19,3 +19,11 @@ aspace_version: v2.0.1
 tag_cdl_program: dsc
 tag_cdl_environment: prd
 tag_cdl_service: archivesspace
+
+ASPACE_JAVA_XMX: 1024m
+ASPACE_JAVA_XSS: 2m
+ASPACE_JAVA_MAXPERMSIZE: 256m
+
+records_per_thread: 25
+thread_count: 2
+indexer_timeout: 600

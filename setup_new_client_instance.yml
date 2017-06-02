@@ -11,9 +11,13 @@
       when: client_name == None
     - debug: var=url_jdbc_base
     - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
-    - name: include vaulted ses auth info
+    - name: include vaulted auth info
       include_vars: all_secrets.yml
       tags: monit
+    - name: include client specific vars
+      include_vars: 
+        file: "{{ client_name }}.yml"
+        dir: host_vars
     - name: install monit
       yum:
         name: monit
@@ -40,6 +44,12 @@
       user:
         name: "{{ client_name }}"
         state: present
+    - name: set java memory sizes
+      template:
+        src: client_bashrc
+        dest: ~/.bashrc
+      become: true
+      become_user: "{{ client_name }}"
     roles:
     - { role: mredar.nightly_security_update_yum, tags: security-up }
     - { role: create_client_mysqldb, tags: create-db , delegate_to: 127.0.0.1 }
