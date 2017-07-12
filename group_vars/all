@@ -28,4 +28,4 @@ ASPACE_JAVA_MAXPERMSIZE: 256m
 
 records_per_thread: 25
 thread_count: 2
-indexer_timeout: 600
+indexer_timeout: 2400
