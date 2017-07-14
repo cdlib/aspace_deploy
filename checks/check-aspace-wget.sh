@@ -28,7 +28,7 @@ function check_public_url () {
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
-			echo -e "\033[31mFor ${client} wget exit is $last_exit\033[0m"
+			echo -e "\033[31mFor ${client} public wget exit is $last_exit\033[0m"
 		fi
         PUBLIC_ERRS+="${client} "
 	fi
@@ -42,7 +42,7 @@ function check_private_url () {
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
-			echo -e "\033[31mFor ${client} wget exit is $last_exit\033[0m"
+			echo -e "\033[31mFor ${client} private wget exit is $last_exit\033[0m"
 	    fi
         PRIVATE_ERRS+="${client} "
 	fi
