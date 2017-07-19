@@ -17,38 +17,35 @@ while getopts hs FLAG; do
 	esac
 done
 
-declare -a clients=("ucbeda" "uclaclark" "ucm" "ucmppdc" "ucsc" "ucsf" "ucrcmp" )
+declare -a clients=("ucbeda" "uclaclark" "ucm" "ucmppdc" "ucsc" "ucsf"
+"ucrcmp" "uclacsrc" "uci" "bogus")
 
 function check_public_url () {
 	if [ $silent -ne 1 ] ; then
 		echo "URL: http://public.${client}.aspace.cdlib.org"
 	fi
-    wget --timeout=10 -q http://public.${client}.aspace.cdlib.org > /dev/null
+    wget --timeout=10 --quiet -O /dev/null http://public.${client}.aspace.cdlib.org
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
-			echo -e "\033[31mFor ${client} wget exit is $last_exit\033[0m"
+			echo -e "\033[31mFor ${client} public wget exit is $last_exit\033[0m"
 		fi
         PUBLIC_ERRS+="${client} "
-    else
-        rm index.html
-    fi
+	fi
 }
 
 function check_private_url () {
 	if [ $silent -ne 1 ] ; then
 		echo "URL: https://${client}.aspace.cdlib.org"
 	fi
-    wget --timeout=10 -q --no-check-certificate https://${client}.aspace.cdlib.org > /dev/null
+    wget --timeout=10 --quiet -O /dev/null https://${client}.aspace.cdlib.org
     last_exit=$?
     if [ $last_exit -ne 0 ] ; then
 		if [ $silent -ne 1 ] ; then
-			echo -e "\033[31mFor ${client} wget exit is $last_exit\033[0m"
+			echo -e "\033[31mFor ${client} private wget exit is $last_exit\033[0m"
 	    fi
         PRIVATE_ERRS+="${client} "
-    else
-        rm index.html
-    fi
+	fi
 }
 
 PUBLIC_ERRS=()
