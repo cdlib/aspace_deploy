@@ -26,5 +26,15 @@
   shell: chdir=~/archivesspace/ ./scripts/setup-database.sh
 - include: aspace_save_client_info.yml
 - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+- name: Place en.yml locales modifications in for UCI
+  copy:
+    src: uci-en-locales.yml
+    dest: ~/archivesspace/locales/en.yml
+  when: client_name == "uci"
+- name: Place en.yml frontend locales modifications in for UCI
+  copy:
+    src: uci-en-frontend.yml
+    dest: ~/archivesspace/plugins/frontend/locales/en.yml
+  when: client_name == "uci"
 - name: delete indexed_state files to force re-index
   shell: rm -f /home/{{ client_name }}/archivesspace/data/indexer_state/*
