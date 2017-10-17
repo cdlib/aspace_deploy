@@ -314,9 +314,9 @@ en:
       error: "Unable to delete locations:"
 
   welcome:
-    heading: Welcome to UCI Special Collection and Archives
+    heading: Welcome to UCI Special Collections and Archives
     message: Where friendly archivists manage collections.
-    message_logged_in: Your friendly archives management tool.
+    message_logged_in: Where friendly archivists manage collections.
 
   breadcrumb:
     home: Home
