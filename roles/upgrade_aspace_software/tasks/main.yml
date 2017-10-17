@@ -34,7 +34,7 @@
 - name: Place en.yml frontend locales modifications in for UCI
   copy:
     src: uci-en-frontend.yml
-    dest: ~/archivesspace/plugins/frontend/locales/en.yml
+    dest: ~/archivesspace/plugins/local/frontend/locales/en.yml
   when: client_name == "uci"
 - name: delete indexed_state files to force re-index
   shell: rm -f /home/{{ client_name }}/archivesspace/data/indexer_state/*
