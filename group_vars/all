@@ -2,7 +2,7 @@
 project: aspace
 region: us-east-1
 key_name: aspace-cluster
-image: ami-9be6f38c
+image: ami-8c1be5f6
 instance_type: t2.small
 sec_grp_ingest_private_id: sg-9879b9fd
 subnet_id_private: subnet-7355145b
