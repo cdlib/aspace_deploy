@@ -12,10 +12,8 @@ url_jdbc_base: "jdbc:mysql://{{ db_server }}:{{ db_port }}/"
 url_jdbc_suffix: '&useUnicode=true&characterEncoding=UTF-8'
 client_db_password: "{{ lookup('password', '~/.aspace/' + client_name + '.pswd' ) }}"
 #override for newer versions
-db_server: "aspace-2-0-1.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
-aspace_version: v2.0.1
-# db_server: "aspace-1-5-3.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
-# aspace_version: v1.5.3
+db_server: "aspace-2-2-0.crqkpkb4l2po.us-east-1.rds.amazonaws.com"
+aspace_version: v2.2.0
 #aspace_version_sha256sum: 9435bec9e70bfe55bcb5134ef339b8aa3962ade3eef540b74baf768ce1185ed2
 
 tag_cdl_program: dsc
