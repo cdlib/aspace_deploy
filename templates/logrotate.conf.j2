@@ -6,7 +6,7 @@
   create 0600 {{ client_name }} {{ client_name }}
   delaycompress
   compress
-  rotate 4
+  rotate 30
   postrotate
     /etc/init.d/awslogs restart > /dev/null
   endscript
