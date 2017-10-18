@@ -1,0 +1,22 @@
+# Update the entry in ~/.ssh/config to reflect latest version
+---
+-   hosts: aspace_instances
+    vars:
+    pre_tasks:
+      - fail: msg='Need to set previous version by adding --extra-vars "previous_version=<previous-version i.e. v2.0.1>" to ansible-playbook call'
+        when: previous_version == None
+      - debug: var=previous_version
+    tasks:
+      - debug: var=client_name
+      - debug: 
+          var: hostvars['{{ client_name }}-{{ previous_version}}']['ansible_ssh_host']
+      - set_fact:
+          old_host: "{{ client_name }}-{{ previous_version}}"
+      - set_fact:
+          old_host_ip: "{{ hostvars[old_host]['ansible_ssh_host'] }}"
+      - name: change the IP from previous to current
+        replace:
+          dest: ~/.ssh/config
+          regexp: "{{ old_host_ip }}"
+          replace: "{{ ansible_ssh_host }}"
+        delegate_to: 127.0.0.1
