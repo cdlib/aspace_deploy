@@ -8,12 +8,8 @@
       - debug: var=previous_version
     tasks:
       - debug: var=client_name
-      - debug: 
-          var: hostvars['{{ client_name }}-{{ previous_version}}']['ansible_ssh_host']
       - set_fact:
-          old_host: "{{ client_name }}-{{ previous_version}}"
-      - set_fact:
-          old_host_ip: "{{ hostvars[old_host]['ansible_ssh_host'] }}"
+          old_host_ip: "{{ hostvars[client_name + '-' + previous_version]['ansible_ssh_host'] }}"
       - name: change the IP from previous to current
         replace:
           dest: ~/.ssh/config
