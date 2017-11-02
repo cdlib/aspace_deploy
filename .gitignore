@@ -1,3 +1,4 @@
 *.zip
 workspace/*
 roles/mredar*
+*.pem
