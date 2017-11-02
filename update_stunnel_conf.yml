@@ -2,18 +2,13 @@
 # call by --limit=<current version> --extra-vars="previous_version=<previous version>"
 ---
 -   hosts: localhost
-    vars:
-    pre_tasks:
-      - fail: msg='Need to set previous version by adding --extra-vars "previous_version=<previous-version i.e. v2.0.1>" to ansible-playbook call'
-        when: previous_version == None
-      - debug: var=previous_version
     tasks:
-      - name: change the DB server
+      - name: change connect to the new DB server
         lineinfile:
           dest: /etc/stunnel/stunnel.conf
-          regexp: "^connect:"
+          regexp: "^connect ="
           state: present
-          line: "^connect = {{ db_server }}:3306"
+          line: "connect = {{ db_server }}:3306"
         become: yes
       - name: restart stunnel
         service:
