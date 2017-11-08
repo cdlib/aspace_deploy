@@ -44,3 +44,13 @@
     host: "%"
     priv: "{{ client_name }}.*:ALL"
 - debug: msg="MYSQL PASSWORD FOR {{ client_name }} -- {{ client_db_password }}"
+- name: create UCI readonly user
+  mysql_user:
+    login_host: "{{ db_server }}"
+    login_password: "{{ pswd_db_master.stdout }}"
+    login_user: "{{ db_user }}"
+    name: "uci_ro"
+    password: "{{ pswd_uci_ro }}"
+    host: "%"
+    priv: "uci.*:SELECT"
+  when: client_name == "uci"
