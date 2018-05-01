@@ -47,7 +47,7 @@ Ec2 instances for the new version.
 7. Create new instances for each client:
    `ansible-playbook -i hosts create_aspace_instance.yml --extra-vars="client_name=<client_name>"`
 8. Run the setup_new_client_instance.yml for each client:
-   `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<client_instance_name> --extra-vars="client_name=<client_name>"`
+   `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<vX.X.X>`
 9. Verify that the aspace app is running correctly. Monit should eventually
    report that it is running & you can check the logs on the machine. The logs
    will be at /home/&lt;client_name&gt;/archivesspace/logs/archivesspace.out.
