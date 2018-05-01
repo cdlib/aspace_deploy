@@ -43,7 +43,7 @@ Ec2 instances for the new version.
    all-dbs.sql`
 5. Create new databases in new instance:
    `mysql -h <new RDS endpoint> -u rds_aspace_admin -p < all-dbs.sql`
-6.  Modify the group_vars/all.yml to update the Archivesspace version and sha256sum.
+6.  Modify the group_vars/all to update the Archivesspace version and sha256sum.
 7. Create new instances for each client:
    `ansible-playbook -i hosts create_aspace_instance.yml --extra-vars="client_name=<client_name>"`
 8. Run the setup_new_client_instance.yml for each client:
