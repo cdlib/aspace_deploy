@@ -30,7 +30,7 @@ Ec2 instances for the new version.
   * Multi-AZ Deployment & Provisioned IOPS storage
   * Current instance size: db.t2.small (2015-10-23)
   * Current storage: 16GB (2015-10-23)
-  * Admin user is rds_admin_aspace
+  * Admin user is rds_aspace_admin
   * Create in the aspace-vpc
   * security group is "default"
   * DB parameter group is "aspace" (for the binary logging issue)
