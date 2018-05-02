@@ -30,7 +30,7 @@ Ec2 instances for the new version.
   * Multi-AZ Deployment & Provisioned IOPS storage
   * Current instance size: db.t2.small (2015-10-23)
   * Current storage: 16GB (2015-10-23)
-  * Admin user is rds_admin_aspace
+  * Admin user is rds_aspace_admin
   * Create in the aspace-vpc
   * security group is "default"
   * DB parameter group is "aspace" (for the binary logging issue)
@@ -43,11 +43,11 @@ Ec2 instances for the new version.
    all-dbs.sql`
 5. Create new databases in new instance:
    `mysql -h <new RDS endpoint> -u rds_aspace_admin -p < all-dbs.sql`
-6.  Modify the group_vars/all.yml to update the Archivesspace version and sha256sum.
+6.  Modify the group_vars/all to update the Archivesspace version and sha256sum.
 7. Create new instances for each client:
    `ansible-playbook -i hosts create_aspace_instance.yml --extra-vars="client_name=<client_name>"`
 8. Run the setup_new_client_instance.yml for each client:
-   `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<client_instance_name> --extra-vars="client_name=<client_name>"`
+   `ansible-playbook -i hosts setup_new_client_instance.yml --vault-password-file=~/.vault_password --limit=<vX.X.X>`
 9. Verify that the aspace app is running correctly. Monit should eventually
    report that it is running & you can check the logs on the machine. The logs
    will be at /home/&lt;client_name&gt;/archivesspace/logs/archivesspace.out.
