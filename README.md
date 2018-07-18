@@ -57,7 +57,7 @@ Ec2 instances for the new version.
    
 10. Modify the entries in `nginx.conf/nginx.conf` on the apsace front to point at the IPs for the new client instances:
 
-   `ansible-playbook -i hosts update_nginx_conf.yml --limit=<old-version> --extra-vars="previous_version=<new-version>"
+    `ansible-playbook -i hosts update_nginx_conf.yml --limit=<old-version> --extra-vars="previous_version=<new-version>"
 
 11. Make sure the config file is good:
     
