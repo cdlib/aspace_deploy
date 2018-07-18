@@ -55,13 +55,11 @@ Ec2 instances for the new version.
    
    The (very verbose) aspace logs will be at `/home/<client_name>/archivesspace/logs/archivesspace.out`
    
-10. Modify the entries in `nginx.conf/nginx.conf` on the apsace front to point at the IPs for the new client instances. [Note: This is quite labor intensive and seems prone to human error. Would be good to script it.]
+10. Modify the entries in `nginx.conf/nginx.conf` on the apsace front to point at the IPs for the new client instances:
 
-11. Copy the updated `nginx.conf file` to `/etc/`:
+   `ansible-playbook -i hosts update_nginx_conf.yml --limit=<old-version> --extra-vars="previous_version=<new-version>"
 
-    `sudo cp code/aspace_deploy/nginx_conf/nginx.conf /etc/nginx/nginx.conf`
-    
-    Make sure the config file is good:
+11. Make sure the config file is good:
     
     `sudo /etc/init.d/nginx configtest`
     
