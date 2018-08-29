@@ -52,7 +52,7 @@
     - { role: mredar.nightly_security_update_yum, tags: security-up }
     - { role: create_client_mysqldb, tags: create-db , delegate_to: 127.0.0.1 }
     - { role: upgrade_aspace_software, tags: setup-software, become_user: "{{ client_name }}" }
-    - { role: mredar.awslogs_meta_role, tags: awslogs }
+    - { role: setup_awslogs, tags: awslogs }
 
     post_tasks:
     - name: put logrotate for client aspace log in place
