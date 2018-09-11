@@ -13,7 +13,7 @@
     dest: /etc/awslogs/awscli.conf
     mode: "0600"
 - name: copy logging.conf file to machine
-  template:
+  copy:
     src: logging.conf
     dest: /etc/awslogs/logging.conf
     mode: "0644"
