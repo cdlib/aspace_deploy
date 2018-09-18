@@ -1,5 +1,6 @@
 localhost              ansible_connection=local
 [v2.4.1]
+ucrie-v2.4.1
 ucrlib-v2.4.1
 ucsf-v2.4.1
 ucsc-v2.4.1
@@ -124,3 +125,4 @@ ucrcmp-v2.4.1 ansible_ssh_host=10.0.1.132 ansible_ssh_private_key_file=~/.ssh/cl
 ucsc-v2.4.1 ansible_ssh_host=10.0.1.45 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsc
 ucsf-v2.4.1 ansible_ssh_host=10.0.1.195 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
 ucrlib-v2.4.1 ansible_ssh_host=10.0.1.103 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
+ucrie-v2.4.1 ansible_ssh_host=10.0.1.152 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrie
