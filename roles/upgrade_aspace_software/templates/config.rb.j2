@@ -127,6 +127,7 @@ AppConfig[:mysql_binlog] = false
 #
 ## Plug-ins to load. They will load in the order specified
 #AppConfig[:plugins] = ['local',  'aspace-public-formats']
+AppConfig[:plugins] = {{ aspace_plugins | to_json }}
 #
 ## URL to direct the feedback link
 ## You can remove this from the footer by making the value blank. 

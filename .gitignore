@@ -3,3 +3,4 @@ workspace/*
 roles/mredar*
 *.pem
 *.retry
+plugins/*

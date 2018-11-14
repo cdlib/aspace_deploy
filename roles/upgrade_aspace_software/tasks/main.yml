@@ -14,14 +14,20 @@
     src: "/home/{{ client_name }}/archivesspace-{{ aspace_version }}.zip"
     copy: no
     creates: "/home/{{ client_name }}/archivesspace/archivesspace.sh"
+- name: copy aspace-import-excel plugin to plugins dir
+  copy:
+    src: "plugins/aspace-import-excel"
+    dest: "~/archivesspace/plugins"
+- name: write config file 
+  template: src=config.rb.j2 dest=~/archivesspace/config/config.rb
+- name: run initialize-plugin script
+  shell: chdir=~/archivesspace/ ./scripts/initialize-plugin.sh aspace-import-excel
 - name: get and put mysql connector in place
   get_url:
     url: https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar
     dest: "/home/{{ client_name }}/archivesspace/lib/"
     sha256sum: 7ba5290be5844b5bbdae3e4bee7e6a86b62b5feeacd224b60e66530df40a307a
     force: no
-- name: config client db access
-  template: src=config.rb.j2 dest=~/archivesspace/config/config.rb
 - name: setup client database
   shell: chdir=~/archivesspace/ ./scripts/setup-database.sh
 - include: aspace_save_client_info.yml
