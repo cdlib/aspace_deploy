@@ -39,6 +39,8 @@ Ec2 instances for the new version.
 
    `mysql -h <new RDS endpoint> -u rds_aspace_admin -p < sqldump-x-x-x.sql`
    
+   Tag the RDS instance with Program = dsc, Service = aspace, Environment = prd
+   
 6.  Modify the `group_vars/all` file to update the `aspace_version` and `db_server`. Note: be sure to use the RDS cluster endpoint for the `db_server`.
 
 7. Create new instances for each client:
