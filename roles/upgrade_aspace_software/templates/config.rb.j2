@@ -12,7 +12,7 @@
 #AppConfig[:max_page_size] = 250
 #
 ## Log level for the backend, values: (everything) debug, info, warn, error, fatal (severe only)
-#AppConfig[:backend_log_level] = "debug"
+AppConfig[:backend_log_level] = "info"
 #
 ## A prefix added to cookies used by the application.
 ##
@@ -188,7 +188,7 @@ AppConfig[:plugins] = {{ aspace_plugins | to_json }}
 ## position setting. This will resequence these tree nodes prior to startup.
 ## If is recogmended that this be used very infrequently and should not be set
 ## to true for all startups ( as it will take a considerable amount of time )
-AppConfig[:resequence_on_startup] = true
+#AppConfig[:resequence_on_startup] = true
 #
 ## This is a URL that points to some demo data that can be used for testing,
 ## teaching, etc. To use this, set an OS environment variable of ASPACE_DEMO = true
