@@ -33,7 +33,7 @@ Ec2 instances for the new version.
    
 4. Dump all DBs in existing RDS instance to file, e.g.:
 
-   `mysqldump --databases ucsf ucmppdc ucbeda ucsc ucrcmp uclaclark ucm ucla uclacsrc uci -h <existing RDS endpoint> -u rds_aspace_admin -p > sqldump-x-x-x.sql`
+   `mysqldump --databases ucsf ucmppdc ucbeda ucsc ucrcmp uclaclark ucm uclacsrc uci -h <existing RDS endpoint> -u rds_aspace_admin -p > sqldump-x-x-x.sql`
    
 5. Create new databases in new instance:
 
