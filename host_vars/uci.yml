@@ -2,5 +2,5 @@ records_per_thread: 25
 thread_count: 4
 indexer_timeout: 86400 # 24 hrs
 
-instance_type: t2.medium
+#instance_type: t2.medium
 
