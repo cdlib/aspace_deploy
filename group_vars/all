@@ -3,7 +3,7 @@ project: aspace
 region: us-east-1
 key_name: aspace-cluster
 image: ami-8c1be5f6
-instance_type: t2.small
+instance_type: t3.small
 sec_grp_ingest_private_id: sg-9879b9fd
 subnet_id_private: subnet-7355145b
 db_port: 3306
@@ -13,7 +13,7 @@ url_jdbc_suffix: '&useUnicode=true&characterEncoding=UTF-8'
 client_db_password: "{{ lookup('password', '~/.aspace/' + client_name + '.pswd' ) }}"
 #override for newer versions
 db_server: "aspace-2-5-1-cluster.cluster-crqkpkb4l2po.us-east-1.rds.amazonaws.com"
-aspace_version: v2.5.1
+aspace_version: v2.5.2
 #aspace_version_sha256sum: 106199283cb3f63f50b9706f41b1c7836295bff7f0a39ccce6b972b0a60deb61 
 
 aspace_plugins:
