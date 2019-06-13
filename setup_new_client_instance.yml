@@ -24,6 +24,14 @@
     - name: create monit monitor for client
       template: src=templates/aspace.monitrc.j2 dest=/etc/monit.d/aspace.monitrc
       tags: monit
+    - name: install java 8
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+    - name: update java path
+      alternatives:
+        name: java
+        path: /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
     - name: install logrotate (should already be installed)
       yum:
         name: logrotate
