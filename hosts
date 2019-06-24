@@ -1,4 +1,19 @@
 localhost              ansible_connection=local
+[v2.6.0]
+test-v2.6.0
+[v2.5.2]
+ucrlib-v2.5.2
+ucbeda-v2.5.2
+uci-v2.5.2
+uclaclark-v2.5.2
+uclacsrc-v2.5.2
+ucm-v2.5.2
+ucmppdc-v2.5.2
+ucrcmp-v2.5.2
+ucsc-v2.5.2
+ucsf-v2.5.2
+ucrie-v2.5.2
+test-v2.5.2
 [v2.5.1]
 ucbeda-v2.5.1
 uci-v2.5.1
@@ -145,3 +160,16 @@ uclacsrc-v2.5.1 ansible_ssh_host=10.0.1.217 ansible_ssh_private_key_file=~/.ssh/
 uclaclark-v2.5.1 ansible_ssh_host=10.0.1.37 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclaclark
 uci-v2.5.1 ansible_ssh_host=10.0.1.209 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uci
 ucbeda-v2.5.1 ansible_ssh_host=10.0.1.84 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
+test-v2.5.2 ansible_ssh_host=10.0.1.115 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
+ucrie-v2.5.2 ansible_ssh_host=10.0.1.60 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrie
+ucsf-v2.5.2 ansible_ssh_host=10.0.1.223 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
+ucsc-v2.5.2 ansible_ssh_host=10.0.1.25 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsc
+ucrcmp-v2.5.2 ansible_ssh_host=10.0.1.69 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrcmp
+ucmppdc-v2.5.2 ansible_ssh_host=10.0.1.48 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucmppdc
+ucm-v2.5.2 ansible_ssh_host=10.0.1.214 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucm
+uclacsrc-v2.5.2 ansible_ssh_host=10.0.1.138 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclacsrc
+uclaclark-v2.5.2 ansible_ssh_host=10.0.1.64 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclaclark
+uci-v2.5.2 ansible_ssh_host=10.0.1.211 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uci
+ucbeda-v2.5.2 ansible_ssh_host=10.0.1.166 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
+ucrlib-v2.5.2 ansible_ssh_host=10.0.1.57 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
+test-v2.6.0 ansible_ssh_host=10.0.1.38 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
