@@ -25,7 +25,7 @@ Ec2 instances for the new version.
    
 1. Take a db snapshot of the existing RDS server. [Note: not quite sure what purpose this serves, other than being extra precautious?]
 
-2. Create a new RDS MySQL instance. Refer to setup of existing RDS MySQL instance for parameters to use. NOTE: need to make ansible playbook for this. 
+2. Create a new RDS MySQL instance. Refer to setup of existing RDS MySQL instance for parameters to use. NOTE: need to make ansible playbook for this. Tag the RDS instance with Program = dsc, Service = aspace, Environment = prd
 
 3. Shutoff access to the aspace instances by running
 
@@ -38,8 +38,6 @@ Ec2 instances for the new version.
 5. Create new databases in new instance:
 
    `mysql -h <new RDS endpoint> -u rds_aspace_admin -p < sqldump-x-x-x.sql`
-   
-   Tag the RDS instance with Program = dsc, Service = aspace, Environment = prd
    
 6.  Modify the `group_vars/all` file to update the `aspace_version` and `db_server`. Note: be sure to use the RDS cluster endpoint for the `db_server`.
 
