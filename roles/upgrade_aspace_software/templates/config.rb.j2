@@ -157,6 +157,8 @@ AppConfig[:allow_user_registration] = false
 ## recommended that you record those URLs in your configuration
 #AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }
 #AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }
+AppConfig[:frontend_proxy_url] = "{{ frontend_proxy_url }}"
+AppConfig[:public_proxy_url] = "{{ public_proxy_url }}"
 #
 #AppConfig[:shared_storage] = proc { File.join(AppConfig[:data_directory], "shared") }
 #

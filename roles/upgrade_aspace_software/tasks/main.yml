@@ -3,7 +3,11 @@
 - include: generate_aspace_secrets.yml
 - set_fact:
     url_jdbc_aspace: "{{ url_jdbc_base }}{{ client_name }}?user={{ client_name }}&password={{ client_db_password }}{{ url_jdbc_suffix }}"
+    frontend_proxy_url: "https://{{ client_name }}.aspace.cdlib.org/"
+    public_proxy_url: "https://public.{{ client_name }}.aspace.cdlib.org/"
 - debug: var=url_jdbc_aspace
+- debug: var=frontend_proxy_url
+- debug: var=public_proxy_url
 - name: copy archivesspace {{ aspace_version }} zip file
   copy: 
     src: "archivesspace-{{ aspace_version }}.zip"
