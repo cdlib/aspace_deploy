@@ -1,4 +1,17 @@
 localhost              ansible_connection=local
+[v2.8.0]
+ucsf-v2.8.0
+ucsc-v2.8.0
+ucrlib-v2.8.0
+ucrie-v2.8.0
+ucrcmp-v2.8.0
+ucmppdc-v2.8.0
+ucm-v2.8.0
+uclacsrc-v2.8.0
+uclaclark-v2.8.0
+uci-v2.8.0
+ucbeda-v2.8.0
+test-v2.8.0
 [v2.7.0]
 ucsf-v2.7.0
 ucsc-v2.7.0
@@ -49,7 +62,7 @@ ucrcmp-v2.5.1
 ucsc-v2.5.1
 ucsf-v2.5.1
 ucrie-v2.5.1
-#test-v2.5.1
+test-v2.5.1
 ucrlib-v2.5.1
 [v2.4.1]
 ucrie-v2.4.1
@@ -173,7 +186,7 @@ ucsc-v2.4.1 ansible_ssh_host=10.0.1.45 ansible_ssh_private_key_file=~/.ssh/clust
 ucsf-v2.4.1 ansible_ssh_host=10.0.1.195 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
 ucrie-v2.4.1 ansible_ssh_host=10.0.1.152 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrie
 ucrlib-v2.5.1 ansible_ssh_host=10.0.1.114 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
-#test-v2.5.1 ansible_ssh_host=10.0.1.44 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
+test-v2.5.1 ansible_ssh_host=10.0.1.44 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
 ucrie-v2.5.1 ansible_ssh_host=10.0.1.17 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrie
 ucsf-v2.5.1 ansible_ssh_host=10.0.1.8 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
 ucsc-v2.5.1 ansible_ssh_host=10.0.1.4 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsc
@@ -208,7 +221,6 @@ uci-v2.6.0 ansible_ssh_host=10.0.1.41 ansible_ssh_private_key_file=~/.ssh/cluste
 ucrlib-v2.6.0 ansible_ssh_host=10.0.1.134 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
 ucbeda-v2.6.0 ansible_ssh_host=10.0.1.56 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
 test-v2.6.0 ansible_ssh_host=10.0.1.133 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
-test-v2.7.0 ansible_ssh_host=10.0.1.62 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
 ucbeda-v2.7.0 ansible_ssh_host=10.0.1.48 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
 uci-v2.7.0 ansible_ssh_host=10.0.1.199 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uci
 uclaclark-v2.7.0 ansible_ssh_host=10.0.1.171 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclaclark
@@ -220,3 +232,15 @@ ucrie-v2.7.0 ansible_ssh_host=10.0.1.136 ansible_ssh_private_key_file=~/.ssh/clu
 ucrlib-v2.7.0 ansible_ssh_host=10.0.1.165 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
 ucsc-v2.7.0 ansible_ssh_host=10.0.1.215 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsc
 test-v2.7.0 ansible_ssh_host=10.0.1.54 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
+test-v2.8.0 ansible_ssh_host=10.0.1.196 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=test
+ucbeda-v2.8.0 ansible_ssh_host=10.0.1.8 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucbeda
+uci-v2.8.0 ansible_ssh_host=10.0.1.164 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uci
+uclaclark-v2.8.0 ansible_ssh_host=10.0.1.186 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclaclark
+uclacsrc-v2.8.0 ansible_ssh_host=10.0.1.162 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=uclacsrc
+ucm-v2.8.0 ansible_ssh_host=10.0.1.108 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucm
+ucmppdc-v2.8.0 ansible_ssh_host=10.0.1.188 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucmppdc
+ucrcmp-v2.8.0 ansible_ssh_host=10.0.1.111 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrcmp
+ucrie-v2.8.0 ansible_ssh_host=10.0.1.87 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrie
+ucrlib-v2.8.0 ansible_ssh_host=10.0.1.91 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucrlib
+ucsc-v2.8.0 ansible_ssh_host=10.0.1.169 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsc
+ucsf-v2.8.0 ansible_ssh_host=10.0.1.20 ansible_ssh_private_key_file=~/.ssh/cluster.pem client_name=ucsf
